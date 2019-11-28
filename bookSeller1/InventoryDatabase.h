@@ -26,6 +26,9 @@ public:
 	// return array books object
 	Book* getBooksDatabase(); 
 
+	// return book in inventory 
+	int getBookCount();
+
 	// Function
 	// Find book object 
 	Book* findBook(string isbn, int* index = nullptr); 

@@ -60,6 +60,11 @@ Book* InventoryDatabase::getBooksDatabase() {
 	return this->books;
 }
 
+// Get book in inventory
+int InventoryDatabase::getBookCount() {
+	return this->bookCount;
+}
+
 //Function
 // Find book object 
 Book* InventoryDatabase::findBook(string isbn, int* index) {

@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "InventoryDatabase.h"
+#include "CashierModule.h"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ int main() {
 
 void mainMenu() {
 	InventoryDatabase db = InventoryDatabase("inv.dat");
+	CashierModule cashier = CashierModule(db); 
 	int selection;
 	cout << "Welcome to Serendipity Bookstore!" << endl;
 	cout << "1. Make sale" << endl;
@@ -24,6 +26,9 @@ void mainMenu() {
 	cout << "What would you like to do? (enter a choice between 1 and 3): ";
 	cin >> selection;
 	switch (selection) {
+	case 1: 
+		cashier.cashierFunction(); 
+		break;
 	case 2:
 		db.mainMenu();
 		break;

@@ -5,7 +5,7 @@
 
 class BookSoldInfo{
 private: 
-	Book bookSold; 
+	Book *bookSold; 
 	Date dateSold; 
 	double saleTax, totalSalePrice; 
 	int quantitySale, quanityRemaining;
@@ -13,7 +13,7 @@ public:
 	// Default constructor 
 	BookSoldInfo(); 
 	// Constructor which takes parameter
-	BookSoldInfo(Book bookSold, double saleTax, double totalSalePrice, int quantitySale, int quanityRemaining, int daySold
+	BookSoldInfo(Book *bookSold, double saleTax, double totalSalePrice, int quantitySale, int quanityRemaining, int daySold
 		, int monthSold, int yearSold); 
 	// Destructor
 	~BookSoldInfo();

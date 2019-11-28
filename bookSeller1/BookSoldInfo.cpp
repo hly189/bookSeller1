@@ -4,7 +4,7 @@
 // Default constructor
 BookSoldInfo::BookSoldInfo()
 {
-	bookSold;
+	*bookSold;
 	dateSold;
 	saleTax = 0.0;
 	totalSalePrice = 0.0;
@@ -13,9 +13,9 @@ BookSoldInfo::BookSoldInfo()
 }
 
 // Constructor which takes parameter
-BookSoldInfo::BookSoldInfo(Book bookSold, double saleTax, double totalSalePrice, int quantitySale, int quanityRemaining, int daySold
+BookSoldInfo::BookSoldInfo(Book *bookSold, double saleTax, double totalSalePrice, int quantitySale, int quanityRemaining, int daySold
 	, int monthSold, int yearSold) {
-	this->bookSold = bookSold;
+	*this->bookSold = *bookSold;
 	this->saleTax = saleTax; 
 	this->totalSalePrice = totalSalePrice; 
 	this->quantitySale = quantitySale; 
@@ -27,7 +27,7 @@ BookSoldInfo::BookSoldInfo(Book bookSold, double saleTax, double totalSalePrice,
 BookSoldInfo::~BookSoldInfo() {}; 
 
 // Accessor 
-Book BookSoldInfo::getBookObject() {	return bookSold; }
+Book BookSoldInfo::getBookObject() {	return *bookSold; }
 int BookSoldInfo::getQuantityRemaining() { return quanityRemaining; }; 
 int BookSoldInfo::getQuantitySale() { return quantitySale; };
 double BookSoldInfo::getSaleTax() { return saleTax; };

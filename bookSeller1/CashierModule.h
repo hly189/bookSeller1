@@ -1,11 +1,12 @@
 #ifndef CashierModule_h
 #define CashierModule_h
-
+#include <ctime>
 #include "BookSoldInfo.h"
+#include "InventoryDatabase.h"
 
 class CashierModule {
 private: 
-	//InventoryDatabase currentInventory; 
+	InventoryDatabase &currentInventory; 
 	BookSoldInfo * bookSoldArray; 
 	int size; 
 public: 
@@ -13,7 +14,7 @@ public:
 	CashierModule(); 
 
 	// Constructor which take parameter 
-	//CashierModule(InventoryDatabase &currentInventory);
+	CashierModule(InventoryDatabase & currentInventory);
 
 	// Destructor
 	~CashierModule(); 
@@ -25,14 +26,31 @@ public:
 	void cashierMenu(); 
 
 	// Function to add sold Book to Array 
-	void addSoldBookToArray(BookSoldInfo bookSold);
+	Book* addSoldBookToTempArray(Book* currentArray, BookSoldInfo bookSold);
 
 	// Function to calculate sale tax
-	void calculateSaleTax(double saleTax, double retailPrice, int quantitySold);
+	double calculateSaleTax(double saleTax, double retailPrice, int quantitySold);
 
-	// Main Function for cashier
-	void cashierFunction(string inputString, int quantity, double saleTax, int day, int month, int year);
+	//  Function for input sale book infromation
+	void customerInputSaleInfo();
 
+	//string inputString, int quantity, double saleTax, int day, int month, int year
+
+	// Validate Quantity and correct input
+	int correctQuantityInput(int inputQuantity, int currentQuantity); 
+
+	// Print out sale book info 
+	void printSaleBookInfo(std::string title, std::string isbn, std::string author, std::string publisher); 
+
+	// Main Cashier Function
+	void cashierFunction(); 
+
+
+	// Function to print out recipe
+	void customeReceipt();
+
+	// update current Sold Book Array 
+	void updateCurrentSoldBookArray();
 };
 
 #endif
