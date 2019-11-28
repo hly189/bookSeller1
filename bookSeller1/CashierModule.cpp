@@ -7,9 +7,7 @@ CashierModule::CashierModule(InventoryDatabase & currentInventory)
 };
 
 // Destructor - it is used to remove bookSoldArray
-CashierModule::~CashierModule() {
-	delete[] bookSoldArray; 
-}
+//CashierModule::~CashierModule() {};
 
 // Accessor 
 // Get Book Sold Array Size 
@@ -47,13 +45,6 @@ void CashierModule::cashierMenu() {
 	}
 }
 
-// Validate quantity and correct quantity input
-int CashierModule::correctQuantityInput(int inputQuantity, int currentQuantity) {
-
-
-	return inputQuantity; 
-}
-
 // Print out sold book info 
 void CashierModule::printSaleBookInfo(std::string title, std::string isbn, std::string author, std::string publiser) {
 	// Print out the information
@@ -63,6 +54,71 @@ void CashierModule::printSaleBookInfo(std::string title, std::string isbn, std::
 	std::cout << "ISBN " << isbn << std::endl;
 	std::cout << "Author " << author << std::endl;
 	std::cout << "Publisher " << publiser << std::endl;
+}
+
+
+//Function to add sold Book To Temp Array
+void CashierModule::addSoldBookToTempArray(BookSoldInfo* currentTempArray, BookSoldInfo bookSoldObject, int size) {
+	
+	// If array is empty, then add new element 
+	if (size == 1) { 
+		currentTempArray[0] = bookSoldObject;
+		return;
+	}
+
+	// If array is not empty, then start updating new array
+	// Make new temp array
+	BookSoldInfo* newTempArray = new BookSoldInfo[size];
+
+	// Update new temp array from current array 
+	for (int i = 0; i < size - 1; i++) {
+		newTempArray[i] = currentTempArray[i];
+	}
+	// Add bookSoldObject to the last index of new temp array 
+	newTempArray[size - 1] = bookSoldObject; 
+
+	// Update new array 
+	currentTempArray = newTempArray;
+}
+
+// Show customer receipt 
+void CashierModule::showCustomeReceiptScreen(BookSoldInfo* tempArray, int size, double saleTax) {
+	// Ask custermer which method do they want to pay 
+	std::string selection; 
+	std::cout << "How do you want to pay? " << std::endl; 
+	std::getline(std::cin, selection); 
+
+	//Show customer record 
+	std::cout << "CUSTOMER REPORT" << std::endl;
+	std::cout << "============================================================" << std::endl; 
+	std::cout << left << setw(50) << "Item";
+	std::cout << setw(25) << "ISBN";
+	std::cout << setw(25) << "PRICE";
+	std::cout << setw(25) << "QUANTITY";
+	std::cout << setw(35) << "DATE SOLD" << std::endl;
+
+	// Loop through array and show item
+	// it will also update subtotal and total of all sold item
+	double subTotal = 0.0; 
+	double totalPrice = 0.0;
+
+	for (int i = 0; i < size; i++) {
+		Book tempBook = tempArray[i].getBookObject(); 
+		std::cout << left << setw(60) << tempBook.getTitle(); 
+		std::cout << setw(25) << tempBook.getIsbn(); 
+		std::cout << setw(25) << tempArray[i].getQuantitySale();
+		std::cout << setw(35) << tempArray[i].getDateSold() << std::endl;
+		// Update subtotal
+		subTotal = subTotal + (tempArray[i].getQuantitySale() * tempBook.getRetailPrice()); 
+
+		// Update total price 
+		totalPrice = totalPrice + tempArray[i].getTotalSalePrice(); 
+	}
+
+	// Let Customer know Subtotal, Tax and Total Price
+	std::cout << "SUBTOTAL " << subTotal << std::endl; 
+	std::cout << "TAX " << saleTax << std::endl; 
+	std::cout << "TOTAL " << totalPrice << std::endl;
 }
 
 // Main Cashier Function 
@@ -80,7 +136,7 @@ void CashierModule::cashierFunction() {
 	Book * currentBookArray = currentInventory.getBooksDatabase(); 
 
 	// Create temp Book Sold Array 
-	Book * tempBookSoldArray; 
+	BookSoldInfo * tempBookSoldArray = new BookSoldInfo[1]; 
 
 	// Asking Customer
 	std::string answer; 
@@ -88,6 +144,9 @@ void CashierModule::cashierFunction() {
 	std::cout << "Please enter sale tax: "; 
 	std::cin >> saleTax; 
 	std::cin.ignore(); 
+
+	// Variable for keeping track of temp array size
+	int tempSize = 0;
 	do {
 		// Asking ISBN number
 		std::string isbn; 
@@ -117,10 +176,18 @@ void CashierModule::cashierFunction() {
 		std::cout << "How many ? "; 
 		std::cin >> quantitySold; 
 		std::cin.ignore(); 
+
+		// IF quantity sold is greater than quantity on Hand
+		// Let user konw and ask if they want to contiue buying
 		if (quantitySold > bookSold->getQuantityOnHand()) {
 			std::cout << "Not enough item in the stock" << std::endl; 
 		}
 		else {
+
+			// Let user know total price before tax 
+			std::cout << "Amount due before Tax: " << bookSold->getRetailPrice() * quantitySold << std::endl; 
+
+			// Asking for day, month and year  sold 
 			int daySold, monthSold, yearSold; 
 			std::cout << "Day Sold "; 
 			std::cin >> daySold; 
@@ -139,11 +206,17 @@ void CashierModule::cashierFunction() {
 			int newRemaining = bookSold->getQuantityOnHand() - quantitySold; 
 			bookSold->setQuantityOnHand(newRemaining); 
 
-			BookSoldInfo bookSoldObject = BookSoldInfo(bookSold, saleTax, totalPrice, quantitySold, newRemaining, daySold, monthSold, yearSold); 
+			// Initialize book sold info object and update temp array size
+			BookSoldInfo bookSoldObject = BookSoldInfo(bookSold, saleTax, totalPrice, quantitySold, newRemaining, daySold, monthSold, yearSold);
+			tempSize++;
+
+			// Add book object to temparray 
+			//addSoldBookToTempArray(tempBookSoldArray, bookSoldObject, tempSize); 
 		}
 		std::cout << "Do you want to make another purchase ? ";
 		std::getline(std::cin, answer); 
 	} while (answer != "N");
+
 
 }
 

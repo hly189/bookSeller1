@@ -19,20 +19,25 @@ void mainMenu() {
 	InventoryDatabase db = InventoryDatabase("inv.dat");
 	CashierModule cashier = CashierModule(db); 
 	int selection;
-	cout << "Welcome to Serendipity Bookstore!" << endl;
-	cout << "1. Make sale" << endl;
-	cout << "2. Check inventory" << endl;
-	cout << "3. Create reports" << endl;
-	cout << "What would you like to do? (enter a choice between 1 and 3): ";
-	cin >> selection;
-	switch (selection) {
-	case 1: 
-		cashier.cashierFunction(); 
-		break;
-	case 2:
-		db.mainMenu();
-		break;
-	}
+	std::string answer; 
+	do {
+		cout << "Welcome to Serendipity Bookstore!" << endl;
+		cout << "1. Make sale" << endl;
+		cout << "2. Check inventory" << endl;
+		cout << "3. Create reports" << endl;
+		cout << "What would you like to do? (enter a choice between 1 and 3): ";
+		cin >> selection;
+		switch (selection) {
+		case 1:
+			cashier.cashierFunction();
+			break;
+		case 2:
+			db.mainMenu();
+			break;
+		}
+		std::cout << "Do you want to continue? "; 
+		std::getline(std::cin, answer); 
+	} while (answer != "N"); 
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -17,7 +17,7 @@ public:
 	CashierModule(InventoryDatabase & currentInventory);
 
 	// Destructor
-	~CashierModule(); 
+	//~CashierModule(); 
 
 	// Acessor 
 	int getSoldBookArraySize();
@@ -26,7 +26,7 @@ public:
 	void cashierMenu(); 
 
 	// Function to add sold Book to Array 
-	Book* addSoldBookToTempArray(Book* currentArray, BookSoldInfo bookSold);
+	void addSoldBookToTempArray(BookSoldInfo* currentArray, BookSoldInfo bookSoldObject, int size);
 
 	// Function to calculate sale tax
 	double calculateSaleTax(double saleTax, double retailPrice, int quantitySold);
@@ -36,9 +36,6 @@ public:
 
 	//string inputString, int quantity, double saleTax, int day, int month, int year
 
-	// Validate Quantity and correct input
-	int correctQuantityInput(int inputQuantity, int currentQuantity); 
-
 	// Print out sale book info 
 	void printSaleBookInfo(std::string title, std::string isbn, std::string author, std::string publisher); 
 
@@ -47,7 +44,7 @@ public:
 
 
 	// Function to print out recipe
-	void customeReceipt();
+	void showCustomeReceiptScreen(BookSoldInfo* tempArray, int size, double saleTax);
 
 	// update current Sold Book Array 
 	void updateCurrentSoldBookArray();

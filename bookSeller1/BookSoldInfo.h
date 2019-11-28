@@ -15,8 +15,7 @@ public:
 	// Constructor which takes parameter
 	BookSoldInfo(Book *bookSold, double saleTax, double totalSalePrice, int quantitySale, int quanityRemaining, int daySold
 		, int monthSold, int yearSold); 
-	// Destructor
-	~BookSoldInfo();
+
 
 	// acessor
 	//get book object 
