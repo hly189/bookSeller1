@@ -29,7 +29,7 @@ void mainMenu() {
 		cin >> selection;
 		switch (selection) {
 		case 1:
-			cashier.cashierFunction();
+			cashier.cashierMenu();
 			break;
 		case 2:
 			db.mainMenu();

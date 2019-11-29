@@ -7,7 +7,9 @@ CashierModule::CashierModule(InventoryDatabase & currentInventory)
 };
 
 // Destructor - it is used to remove bookSoldArray
-//CashierModule::~CashierModule() {};
+CashierModule::~CashierModule() {
+	delete[] bookSoldArray; 
+};
 
 // Accessor 
 // Get Book Sold Array Size 
@@ -31,17 +33,25 @@ double CashierModule::calculateSaleTax(double saleTax, double retailPrice, int q
 
 // Main Function 
 void CashierModule::cashierMenu() {
-	int selection; 
-	std::cout << "Welcome to Serendipity Cashier" << std::endl; 
-	std::cout << "1. Cashier" << std::endl; 
-	std::cout << "2. Cashier Report" << std::endl;
-	std::cout << "What would you like to do? (enter a choice between 1 and 2): ";
-	std::cin >> selection;
-	switch (selection)
-	{
-	case 1: 
-		cashierFunction();
-		break;
+	int selection = 0;
+	while (selection != 3) {
+		std::cout << "Welcome to Serendipity Cashier" << std::endl;
+		std::cout << "1. Cashier" << std::endl;
+		std::cout << "2. Cashier Report" << std::endl;
+		std::cout << "3. Exit" << std::endl;
+		std::cout << "What would you like to do? (enter a choice between 1 and 3): ";
+		std::cin >> selection;
+		switch (selection)
+		{
+		case 1:
+			cashierFunction();
+			break;
+		case 2: 
+			showCashierRecord(); 
+			break; 
+		default: 
+			break; 
+		}
 	}
 }
 
@@ -58,67 +68,87 @@ void CashierModule::printSaleBookInfo(std::string title, std::string isbn, std::
 
 
 //Function to add sold Book To Temp Array
-void CashierModule::addSoldBookToTempArray(BookSoldInfo* currentTempArray, BookSoldInfo bookSoldObject, int size) {
-	
-	// If array is empty, then add new element 
-	if (size == 1) { 
-		currentTempArray[0] = bookSoldObject;
-		return;
+void CashierModule::addSoldBookdToArray(BookSoldInfo bookSoldObject) {
+	// Declare new temp array
+	BookSoldInfo *tempArray = new BookSoldInfo[size + 1];
+
+	// Copy old array to new temp array 
+	for (int i = 0; i < size; i++) {
+		tempArray[i] = bookSoldArray[i];
 	}
 
-	// If array is not empty, then start updating new array
-	// Make new temp array
-	BookSoldInfo* newTempArray = new BookSoldInfo[size];
+	// Add sold book to sale record at the end
+	tempArray[size] = bookSoldObject;
 
-	// Update new temp array from current array 
-	for (int i = 0; i < size - 1; i++) {
-		newTempArray[i] = currentTempArray[i];
-	}
-	// Add bookSoldObject to the last index of new temp array 
-	newTempArray[size - 1] = bookSoldObject; 
+	// Update sale record array 
+	size++;
 
-	// Update new array 
-	currentTempArray = newTempArray;
+	// Free old memory 
+	delete[] bookSoldArray;
+
+	// Copy new array to original array 
+	bookSoldArray = tempArray;
 }
 
-// Show customer receipt 
-void CashierModule::showCustomeReceiptScreen(BookSoldInfo* tempArray, int size, double saleTax) {
-	// Ask custermer which method do they want to pay 
-	std::string selection; 
-	std::cout << "How do you want to pay? " << std::endl; 
-	std::getline(std::cin, selection); 
-
+// Function to show field for the item 
+void CashierModule::showField() {
 	//Show customer record 
 	std::cout << "CUSTOMER REPORT" << std::endl;
-	std::cout << "============================================================" << std::endl; 
+	std::cout << "============================================================" << std::endl;
 	std::cout << left << setw(50) << "Item";
 	std::cout << setw(25) << "ISBN";
 	std::cout << setw(25) << "PRICE";
 	std::cout << setw(25) << "QUANTITY";
 	std::cout << setw(35) << "DATE SOLD" << std::endl;
+}
+
+// Overload function to show each iterm for the field 
+void CashierModule::showField(std::string title, std::string isbn, double retailPrice, int quantity, std::string daySold) {
+	std::cout << left << setw(50) << title;
+	std::cout << setw(25) << isbn;
+	std::cout << setw(25) << retailPrice;
+	std::cout << setw(25) << quantity;
+	std::cout << setw(35) << daySold << std::endl;
+}
+
+// Show customer receipt 
+void CashierModule::showCustomeReceiptScreen(int startingPoint, double saleTax) {
+	// Ask custermer which method do they want to pay 
+	std::string selection; 
+	std::cout << "How do you want to pay? "; 
+	std::getline(std::cin, selection); 
+
+	//Show customer record 
+	showField();
 
 	// Loop through array and show item
 	// it will also update subtotal and total of all sold item
 	double subTotal = 0.0; 
 	double totalPrice = 0.0;
 
-	for (int i = 0; i < size; i++) {
-		Book tempBook = tempArray[i].getBookObject(); 
-		std::cout << left << setw(60) << tempBook.getTitle(); 
-		std::cout << setw(25) << tempBook.getIsbn(); 
-		std::cout << setw(25) << tempArray[i].getQuantitySale();
-		std::cout << setw(35) << tempArray[i].getDateSold() << std::endl;
+	for (int i = startingPoint; i < size; i++) {
+		Book *tempBook = bookSoldArray[i].getBookObject(); 
+
+		// Use Overload Function to show each book sold
+		showField(tempBook->getTitle(), tempBook->getIsbn(), tempBook->getRetailPrice(),
+			bookSoldArray[i].getQuantitySale(), bookSoldArray[i].getDateSold());
 		// Update subtotal
-		subTotal = subTotal + (tempArray[i].getQuantitySale() * tempBook.getRetailPrice()); 
+		subTotal = subTotal + (bookSoldArray[i].getQuantitySale() * tempBook->getRetailPrice());
 
 		// Update total price 
-		totalPrice = totalPrice + tempArray[i].getTotalSalePrice(); 
+		totalPrice = totalPrice + bookSoldArray[i].getTotalSalePrice();
 	}
-
+	std::cout << std::endl; 
 	// Let Customer know Subtotal, Tax and Total Price
 	std::cout << "SUBTOTAL " << subTotal << std::endl; 
-	std::cout << "TAX " << saleTax << std::endl; 
+	std::cout << "TAX " << saleTax << "%" << std::endl; 
 	std::cout << "TOTAL " << totalPrice << std::endl;
+	std::cout << "============================================================" << std::endl; 
+	std::cout << "Paid by " << selection << std::endl; 
+	std::cout << "============================================================" << std::endl;
+	std::cout << "Thank you so much for your purchase!" << std::endl; 
+	std::cout << "See you again" << std::endl; 
+
 }
 
 // Main Cashier Function 
@@ -146,7 +176,7 @@ void CashierModule::cashierFunction() {
 	std::cin.ignore(); 
 
 	// Variable for keeping track of temp array size
-	int tempSize = 0;
+	int lastIndex = size;
 	do {
 		// Asking ISBN number
 		std::string isbn; 
@@ -160,7 +190,6 @@ void CashierModule::cashierFunction() {
 
 		// Print out the information
 		printSaleBookInfo(bookSold->getTitle(), bookSold->getIsbn(), bookSold->getAuthor(), bookSold->getPublisher());
-		//std::cout << "Date Added " << bookSold->getDateAdded() << std::endl; 
 
 		// confirm to continue the sale or not
 		// by restart the loop
@@ -208,17 +237,34 @@ void CashierModule::cashierFunction() {
 
 			// Initialize book sold info object and update temp array size
 			BookSoldInfo bookSoldObject = BookSoldInfo(bookSold, saleTax, totalPrice, quantitySold, newRemaining, daySold, monthSold, yearSold);
-			tempSize++;
 
 			// Add book object to temparray 
-			//addSoldBookToTempArray(tempBookSoldArray, bookSoldObject, tempSize); 
+			addSoldBookdToArray(bookSoldObject); 
 		}
 		std::cout << "Do you want to make another purchase ? ";
 		std::getline(std::cin, answer); 
 	} while (answer != "N");
 
+	// Show Customer Screen
+	showCustomeReceiptScreen(lastIndex, saleTax);
 
+	// Start updating temp array 
 }
 
+// Show Cashier Record
+void CashierModule::showCashierRecord() {
+	
+	// Show Field Title 
+	showField(); 
 
+	// Loop through sold book array and show 
+	// each sold item 
+	for (int i = 0; i < size; i++) {
+		Book *tempBook = bookSoldArray[i].getBookObject();
+
+		// Use Overload Function to show each book sold
+		showField(tempBook->getTitle(), tempBook->getIsbn(), tempBook->getRetailPrice(),
+			bookSoldArray[i].getQuantitySale(), bookSoldArray[i].getDateSold());
+	}
+}
 

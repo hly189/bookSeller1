@@ -23,8 +23,11 @@ BookSoldInfo::BookSoldInfo(Book *bookSold, double saleTax, double totalSalePrice
 	dateSold = Date(daySold, monthSold, yearSold); 
 }
 
+// Default Destructor
+BookSoldInfo::~BookSoldInfo() {}; 
+
 // Accessor 
-Book BookSoldInfo::getBookObject() {	return *bookSold; }
+Book* BookSoldInfo::getBookObject() {	return bookSold; }
 int BookSoldInfo::getQuantityRemaining() { return quanityRemaining; }; 
 int BookSoldInfo::getQuantitySale() { return quantitySale; };
 double BookSoldInfo::getSaleTax() { return saleTax; };
