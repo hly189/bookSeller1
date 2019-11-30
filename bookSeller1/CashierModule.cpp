@@ -174,6 +174,7 @@ void CashierModule::cashierFunction() {
 	double saleTax; 
 	std::cout << "Please enter sale tax: "; 
 	Helpers::correctingValidInput(saleTax);
+	std::cin.ignore(); 
 
 	// Variable for keeping track of temp array size
 	int lastIndex = size;

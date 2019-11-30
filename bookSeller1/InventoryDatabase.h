@@ -7,6 +7,8 @@
 #include <string>
 #include <iostream>
 
+using namespace std; 
+
 class InventoryDatabase {
 private:
 	Book* books;

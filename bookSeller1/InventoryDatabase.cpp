@@ -1,62 +1,17 @@
 #include "pch.h"
 #include "InventoryDatabase.h"
 
+using namespace std;
+
 // Default constructor
 InventoryDatabase::InventoryDatabase() {}; 
 
 // Constructor with parameter 
 InventoryDatabase::InventoryDatabase(string invFile) {
-	this->books = new Book[this->maxBooks];
 	this->invFilePath = invFile;
-	instream.open(this->invFilePath);
-	if (instream.is_open()) {
-		while (!instream.eof()) {
-			string line;
-			int length;
-			getline(instream, line);
-			string* fields = Helpers::splitString(line, "|", &length);
-			Book* book = new Book;
-			for (int i = 0; i < length; i++) {
-				switch (i) {
-				case 0:
-					book->setIsbn(fields[i]);
-					break;
-				case 1:
-					book->setTitle(fields[i]);
-					break;
-				case 2:
-					book->setAuthor(fields[i]);
-					break;
-				case 3:
-					book->setPublisher(fields[i]);
-					break;
-				case 4:
-					book->setQuantityOnHand(stoi(Helpers::getConsoleLine()));
-					break;
-				case 5:
-					book->setWholesaleCost(stof(Helpers::getConsoleLine()));
-					break;
-				case 6:
-					book->setRetailPrice(stof(Helpers::getConsoleLine()));
-					break;
-				case 7:
-					book->setDay(stoi(Helpers::getConsoleLine()));
-					break;
-				case 8:
-					book->setMonth(stoi(Helpers::getConsoleLine()));
-					break;
-				case 9:
-					book->setYear(stoi(Helpers::getConsoleLine()));
-					break;
-				}
-			}
-
-			this->books[bookCount] = *book;
-			delete book;
-			this->bookCount++;
-		}
-		this->bookCount--;
-	}
+	this->bookCount = Helpers::getDataFIleSize(invFile);
+	this->books = new Book[this->bookCount];
+	this->books = Helpers::installDataToInventory(invFile, this->maxBooks);
 }
 
 // Accessor
@@ -150,8 +105,9 @@ void InventoryDatabase::addBook(){
 		Book* book = new Book;
 		string isbn;
 		Book* bookExists;
+
 		cout << "ISBN: ";
-		isbn = Helpers::getConsoleLine();
+		std::getline(std::cin, isbn); 
 		bookExists = findBook(isbn);
 		if (bookExists == nullptr) {
 			book->setIsbn(Helpers::getConsoleLine());
