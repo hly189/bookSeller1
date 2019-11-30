@@ -15,6 +15,8 @@ int Helpers::getDataFIleSize(std::string fileName) {
 	// open file and calculate couting size of file
 	while (myFile.is_open() && !myFile.eof()) {
 		std::getline(myFile, line);
+		// Ignore empty line in data file
+		if (line == "") continue; 
 		size++;
 	}
 
@@ -42,6 +44,8 @@ Book* Helpers::installDataToInventory(string fileName, int fileSize) {
 
 		// Loop through the end of the file 
 		while (getline(myFile, line)) {
+			// Ignore empty line in data file
+			if (line == "") continue; 
 			std::stringstream iss_line(line);
 
 			// declare array with size 10 
@@ -74,9 +78,7 @@ Book* Helpers::installDataToInventory(string fileName, int fileSize) {
 			//cout << quantity << endl; 
 
 			// Construct BookInfo Object
-			if (wholesale == 0) {
-				continue;
-			}
+
 			Book *tempBook = new Book(arrayString[0], arrayString[1], arrayString[2], arrayString[3],
 				quantity, wholesale, retailPrice, day, month, year);
 
