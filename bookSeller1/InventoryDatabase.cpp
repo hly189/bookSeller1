@@ -10,7 +10,7 @@ InventoryDatabase::InventoryDatabase() {};
 InventoryDatabase::InventoryDatabase(string invFile) {
 	this->invFilePath = invFile;
 	this->bookCount = Helpers::getDataFIleSize(invFile);
-	this->books = new Book[this->bookCount];
+	this->books = new Book[this->maxBooks];
 	this->books = Helpers::installDataToInventory(invFile, this->maxBooks);
 }
 
