@@ -27,10 +27,13 @@
     <ClInclude Include="BookSoldInfo.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Book.h">
+    <ClInclude Include="InventoryDatabase.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="InventoryDatabase.h">
+    <ClInclude Include="Helpers.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -51,6 +54,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InventoryDatabase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

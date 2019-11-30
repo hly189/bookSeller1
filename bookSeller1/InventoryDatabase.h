@@ -1,7 +1,7 @@
 #ifndef InventoryDatabase_h
 #define InventoryDatabase_h
 
-//#include "Helpers.h"
+#include "Helpers.h"
 #include "Book.h"
 #include <fstream>
 #include <string>
@@ -50,12 +50,4 @@ public:
 
 };
 
-// set of helper function
-namespace Helpers {
-	// Function to split string with delimeter 
-	std::string* splitString(string input, string delimiter, int* length);
-
-	// Function to get consold line
-	std::string getConsoleLine(); 
-}
 #endif

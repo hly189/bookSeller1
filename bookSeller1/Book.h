@@ -1,138 +1,84 @@
-#pragma once
+#ifndef Book_h
+#define Book_h
+
 #include <string>
-#include <chrono>
-#include <ctime>
-#include <sstream>
-#include <iomanip>
+#include "Date.h"
 
 using namespace std;
+
 class Book {
 private:
 	string isbn;
 	string title;
 	string author;
 	string publisher;
-	chrono::system_clock::time_point dateAdded;
+	Date dateAdded;
 	unsigned int quantityOnHand;
-	float wholesaleCost;
-	float retailPrice;
+	double wholesaleCost;
+	double retailPrice;
 
-public:
-	Book(string isbn, string title, string author, string publisher, chrono::system_clock::time_point dateAdded, unsigned int quantityOnHand, float wholesaleCost, float retailPrice) {
-		this->isbn = isbn;
-		this->title = title;
-		this->author = author;
-		this->publisher = publisher;
-		this->dateAdded = dateAdded;
-		this->quantityOnHand = quantityOnHand;
-		this->wholesaleCost = wholesaleCost;
-		this->retailPrice = retailPrice;
-	}
+public: 
+	// Default Constructor 
+	Book(); 
 
-	Book() {
-		this->isbn = "";
-		this->title = "";
-		this->author = "";
-		this->publisher = "";
-		this->dateAdded = chrono::system_clock::now();
-		this->quantityOnHand = 0;
-		this->wholesaleCost = 0;
-		this->retailPrice = 0;
-	}
+	// Constructor with parameter
+	Book(string isbn, string title, string author, string publisher, unsigned int quantityOnHand,
+		float wholesaleCost, float retailPrice, int day, int month, int year);
 
-	string getIsbn() {
-		return this->isbn;
-	}
-	string getTitle() {
-		return this->title;
-	}
-	string getAuthor() {
-		return this->author;
-	}
-	string getPublisher() {
-		return this->publisher;
-	}
-	chrono::system_clock::time_point getDateAdded() {
-		return this->dateAdded;
-	}
-	unsigned int getQuantityOnHand() {
-		return this->quantityOnHand;
-	}
-	float getWholesaleCost() {
-		return this->wholesaleCost;
-	}
-	float getRetailPrice() {
-		return this->retailPrice;
-	}
 
-	void setIsbn(string isbn) {
-		this->isbn = isbn;
-	}
-	void setTitle(string title) {
-		this->title = title;
-	}
-	void setAuthor(string author) {
-		this->author = author;
-	}
-	void setPublisher(string publisher) {
-		this->publisher = publisher;
-	}
-	void setDateAdded(chrono::system_clock::time_point dateAdded) {
-		this->dateAdded = dateAdded;
-	}
-	void setQuantityOnHand(unsigned int quantityOnHand) {
-		this->quantityOnHand = quantityOnHand;
-	}
-	void setWholesaleCost(float wholesaleCost) {
-		this->wholesaleCost = wholesaleCost;
-	}
-	void setRetailPrice(float retailPrice) {
-		this->retailPrice = retailPrice;
-	}
+	// Accessor 
+	// get ISBN 
+	string getIsbn();
+	// get Titile 
+	string getTitle();
+	// get Author 
+	string getAuthor();
+	// get publisher
+	string getPublisher(); 
+	// get Date Added
+	string getDateAdded(); 
+	// get quantity on hand 
+	unsigned int getQuantityOnHand();
+	// float whole sale cost
+	double getWholesaleCost(); 
+	//float get retail price 
+	double getRetailPrice();
 
-	string bookDataAsString() {
-		string data = this->getIsbn() + "|" +
-			this->getTitle() + "|" +
-			this->getAuthor() + "|" +
-			this->getPublisher() + "|" +
-			to_string(chrono::milliseconds(this->getDateAdded().time_since_epoch().count()).count()) + "|" +
-			to_string(this->getQuantityOnHand()) + "|" +
-			to_string(this->getWholesaleCost()) + "|" +
-			to_string(this->getRetailPrice());
-		return data;
-	}
+	// Mutator 
+	// Set ISBN 
+	void setIsbn(string isbn);
+	// Set Title
+	void setTitle(string title);
+	// Set Author
+	void setAuthor(string author);
+	// Set Publisher
+	void setPublisher(string publisher);
+	// set Date added
+	// set Day 
+	void setDay(int day); 
+	// set month 
+	void setMonth(int month); 
+	// set year
+	void setYear(int year); 
+	// Set Quantity on Hand 
+	void setQuantityOnHand(unsigned int quantityOnHand);
+	// Set Whole Sale Cost
+	void setWholesaleCost(double wholesaleCost);
+	// Set Retail Price 
+	void setRetailPrice(double retailPrice);
 
-	string bookDataAsHumanReadableString() {
-		char date[26];
-		time_t dateAdded = chrono::system_clock::to_time_t(this->getDateAdded());
-		ctime_s(date, 26, &dateAdded);
-		ostringstream streamObj;
+	// Function 
+	// convert to Data String 
+	string bookDataAsString();
 
-		streamObj << fixed << setprecision(2) << this->getWholesaleCost();
-		string wholesaleCost = streamObj.str();
+	// conver to Human readable
+	string bookDataAsHumanReadableString();
 
-		streamObj.str("");
-		streamObj.clear();
+	//Get Fields
+	static string* getFields();
 
-		streamObj << fixed << setprecision(2) << this->getRetailPrice();
-		string retailPrice = streamObj.str();
-		string data = "ISBN: " + this->getIsbn() + '\n' +
-			"Title: " + this->getTitle() + '\n' +
-			"Author: " + this->getAuthor() + '\n' +
-			"Publisher: " + this->getPublisher() + '\n' +
-			"Added on: " + date + '\n' +
-			"Quantity on hand: " + to_string(this->getQuantityOnHand()) + '\n' +
-			"Wholesale cost: $" + wholesaleCost + '\n' +
-			"Retail price: $" + retailPrice + '\n';
-		return data;
-	}
-
-	static string* getFields() {
-		string fields[8] = { "isbn", "title", "author", "publisher", "dateAdded", "quantityOnHand", "wholesaleCost", "retailPrice" };
-		return fields;
-	}
-	static string* getHumanReadableFields() {
-		string humanReadableFields[8] = { "ISBN", "Title", "Author", "Publisher", "Date added", "Quantity on hand", "Wholesale cost", "Retail price" };
-		return humanReadableFields;
-	}
+	// Get Human Readable Field 
+	static string* getHumanReadableFields();
 };
+
+#endif

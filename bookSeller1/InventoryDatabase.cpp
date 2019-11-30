@@ -30,22 +30,27 @@ InventoryDatabase::InventoryDatabase(string invFile) {
 				case 3:
 					book->setPublisher(fields[i]);
 					break;
-				case 4: {
-					chrono::system_clock::time_point dateAdded(std::chrono::milliseconds(std::stoll(fields[i])));
-					book->setDateAdded(dateAdded);
-					break;
-				}
-				case 5:
+				case 4:
 					book->setQuantityOnHand(stoi(Helpers::getConsoleLine()));
 					break;
-				case 6:
+				case 5:
 					book->setWholesaleCost(stof(Helpers::getConsoleLine()));
 					break;
-				case 7:
+				case 6:
 					book->setRetailPrice(stof(Helpers::getConsoleLine()));
+					break;
+				case 7:
+					book->setDay(stoi(Helpers::getConsoleLine()));
+					break;
+				case 8:
+					book->setMonth(stoi(Helpers::getConsoleLine()));
+					break;
+				case 9:
+					book->setYear(stoi(Helpers::getConsoleLine()));
 					break;
 				}
 			}
+
 			this->books[bookCount] = *book;
 			delete book;
 			this->bookCount++;
@@ -162,15 +167,20 @@ void InventoryDatabase::addBook(){
 		book->setAuthor(Helpers::getConsoleLine());
 		cout << "Publisher: ";
 		book->setPublisher(Helpers::getConsoleLine());
-		book->setDateAdded(chrono::system_clock::now());
 		cout << "Quantity on hand: ";
 		book->setQuantityOnHand(stoi(Helpers::getConsoleLine()));
 		cout << "Wholesale cost: $";
 		book->setWholesaleCost(stof(Helpers::getConsoleLine()));
 		cout << "Retail price: $";
 		book->setRetailPrice(stof(Helpers::getConsoleLine()));
+		cout << "Day Add: ";
+		book->setDay(stoi(Helpers::getConsoleLine()));
+		cout << "Month Add: ";
+		book->setMonth(stoi(Helpers::getConsoleLine()));
+		cout << "Year Add: ";
+		book->setYear(stoi(Helpers::getConsoleLine()));
 		books[this->bookCount++] = *book;
-		delete book;
+		delete book; 
 		cout << "========================================================================================================================" << endl;
 	}
 	else {
@@ -259,7 +269,7 @@ void InventoryDatabase::mainMenu() {
 		cout << "5: Exit" << endl;
 		cout << endl;
 		cout << "What would you like to do? (enter an option between 1 and 5): ";
-		cin >> selection;
+		Helpers::correctingValidInput(selection);
 		switch (selection) {
 		case 1: {
 			lookUpBook();
@@ -282,37 +292,3 @@ void InventoryDatabase::mainMenu() {
 		}
 	}
 }
-
-// Set of Helper function
-
-std::string * Helpers::splitString(string input, string delimiter, int * length)
-{
-	size_t pos = 0;
-	std::string* tokens = new string[1024];
-	int token_index = 0;
-	while ((pos = input.find(delimiter)) != string::npos) {
-		std::string token = input.substr(0, pos);
-		tokens[token_index] = token;
-		token_index++;
-	}
-	if (token_index < 0) {
-		std::string* ret = new string[token_index - 1];
-		for (int i = 0; i < token_index; i++) {
-			ret[i] = tokens[i];
-		}
-		*length = token_index - 1;
-		delete[] tokens;
-		return ret;
-	}
-	else {
-		return nullptr;
-	}
-}
-
-std::string Helpers::getConsoleLine()
-{
-	std::string str;
-	std::getline(cin, str, '\n');
-	return str;
-}
-

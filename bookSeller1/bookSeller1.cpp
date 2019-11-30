@@ -4,6 +4,7 @@
 #include "pch.h"
 #include "InventoryDatabase.h"
 #include "CashierModule.h"
+#include "Helpers.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ void mainMenu() {
 		cout << "2. Check inventory" << endl;
 		cout << "3. Create reports" << endl;
 		cout << "What would you like to do? (enter a choice between 1 and 3): ";
-		cin >> selection;
+		Helpers::correctingValidInput(selection); 
 		switch (selection) {
 		case 1:
 			cashier.cashierMenu();

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CashierModule.h"
+#include "Helpers.h"
 
 //Default Constructor 
 CashierModule::CashierModule(InventoryDatabase & currentInventory) 
@@ -40,7 +41,7 @@ void CashierModule::cashierMenu() {
 		std::cout << "2. Cashier Report" << std::endl;
 		std::cout << "3. Exit" << std::endl;
 		std::cout << "What would you like to do? (enter a choice between 1 and 3): ";
-		std::cin >> selection;
+		Helpers::correctingValidInput(selection);
 		switch (selection)
 		{
 		case 1:
@@ -93,7 +94,7 @@ void CashierModule::addSoldBookdToArray(BookSoldInfo bookSoldObject) {
 // Function to show field for the item 
 void CashierModule::showField() {
 	//Show customer record 
-	std::cout << "CUSTOMER REPORT" << std::endl;
+	std::cout << "CASHIER REPORT" << std::endl;
 	std::cout << "============================================================" << std::endl;
 	std::cout << left << setw(50) << "Item";
 	std::cout << setw(25) << "ISBN";
@@ -172,8 +173,7 @@ void CashierModule::cashierFunction() {
 	std::string answer; 
 	double saleTax; 
 	std::cout << "Please enter sale tax: "; 
-	std::cin >> saleTax; 
-	std::cin.ignore(); 
+	Helpers::correctingValidInput(saleTax);
 
 	// Variable for keeping track of temp array size
 	int lastIndex = size;
@@ -203,8 +203,7 @@ void CashierModule::cashierFunction() {
 		std::cout << "Price " << bookSold->getRetailPrice() << std::endl; 
 		std::cout << "There are " << bookSold->getQuantityOnHand() << std::endl; 
 		std::cout << "How many ? "; 
-		std::cin >> quantitySold; 
-		std::cin.ignore(); 
+		Helpers::correctingValidInput(quantitySold);
 
 		// IF quantity sold is greater than quantity on Hand
 		// Let user konw and ask if they want to contiue buying
@@ -219,13 +218,11 @@ void CashierModule::cashierFunction() {
 			// Asking for day, month and year  sold 
 			int daySold, monthSold, yearSold; 
 			std::cout << "Day Sold "; 
-			std::cin >> daySold; 
-			std::cin.ignore();
+			Helpers::correctingValidInput(daySold);
 			std::cout << "Month Sold "; 
-			std::cin >> monthSold; 
-			std::cin.ignore();
+			Helpers::correctingValidInput(monthSold);
 			std::cout << "Year Sold "; 
-			std::cin >> yearSold; 
+			Helpers::correctingValidInput(yearSold);
 			std::cin.ignore();
 
 			// Start calculating total price and add bookSold to temp array
@@ -247,8 +244,6 @@ void CashierModule::cashierFunction() {
 
 	// Show Customer Screen
 	showCustomeReceiptScreen(lastIndex, saleTax);
-
-	// Start updating temp array 
 }
 
 // Show Cashier Record
@@ -256,6 +251,13 @@ void CashierModule::showCashierRecord() {
 	
 	// Show Field Title 
 	showField(); 
+
+
+	// If no book sold yet, let user know and return
+	if (size == 0) {
+		std::cout << "There is no sold book yet" << std::endl; 
+		return; 
+	}
 
 	// Loop through sold book array and show 
 	// each sold item 

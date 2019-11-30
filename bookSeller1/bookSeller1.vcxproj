@@ -155,14 +155,17 @@
     <ClInclude Include="BookSoldInfo.h" />
     <ClInclude Include="CashierModule.h" />
     <ClInclude Include="Date.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="InventoryDatabase.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Book.cpp" />
     <ClCompile Include="bookSeller1.cpp" />
     <ClCompile Include="BookSoldInfo.cpp" />
     <ClCompile Include="CashierModule.cpp" />
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="InventoryDatabase.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
