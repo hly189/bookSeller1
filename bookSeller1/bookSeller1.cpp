@@ -17,7 +17,7 @@ int main() {
 }
 
 void mainMenu() {
-	InventoryDatabase db = InventoryDatabase("inv.dat");
+	InventoryDatabase db = InventoryDatabase("inv.txt");
 	CashierModule cashier = CashierModule(db); 
 	int selection;
 	std::string answer; 

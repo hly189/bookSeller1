@@ -166,8 +166,11 @@ void CashierModule::cashierFunction() {
 	// Get the current inventory
 	Book * currentBookArray = currentInventory.getBooksDatabase(); 
 
-	// Create temp Book Sold Array 
-	BookSoldInfo * tempBookSoldArray = new BookSoldInfo[1]; 
+
+	for (int i = 0; i < currentInventory.getBookCount(); i++) {
+		std::cout << "This is " << currentBookArray[i].bookDataAsString() << std::endl; 
+	}
+
 
 	// Asking Customer
 	std::string answer; 
@@ -175,7 +178,6 @@ void CashierModule::cashierFunction() {
 	std::cout << "Please enter sale tax: "; 
 	Helpers::correctingValidInput(saleTax);
 	std::cin.ignore(); 
-
 	// Variable for keeping track of temp array size
 	int lastIndex = size;
 	do {

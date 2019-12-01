@@ -37,7 +37,6 @@ Book* Helpers::installDataToInventory(string fileName, int fileSize) {
 	// Continue if file is open 
 	if (myFile.is_open()) {
 		std::string line;
-
 		// initial count to for putting book info 
 		// to approriate slot of inventory array 
 		int count = 0;
@@ -47,7 +46,8 @@ Book* Helpers::installDataToInventory(string fileName, int fileSize) {
 			// Ignore empty line in data file
 			if (line == "") continue; 
 			std::stringstream iss_line(line);
-
+			iss_line.clear();
+			//std::cout << iss
 			// declare array with size 10 
 			// each slot of array represend one field in Book 
 			// book[0] - ISBN
@@ -117,6 +117,7 @@ void Helpers::correctingValidInput(int &userInput) {
 	} while (checking == false);
 }
 
+// Overload to validate input and correct it - double
 void Helpers::correctingValidInput(double &userInput) {
 	bool checking;
 	do {
