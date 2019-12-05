@@ -117,9 +117,109 @@ void ReportModule::ReportListByQuantity(InventoryDatabase& currentInventory) {
 	ListByQuantity.close();
 }
 
+//Report List By Cost
+void ReportModule::ReportListByCost(InventoryDatabase& currentInventory) {
+
+
+	ofstream ListByCost;
+	ListByCost.open("RetailValue.txt"); // create retail value report
+	std::cout << "Welcome to List By Quantity. " << std::endl;
+	ListByCost << "Welcome to List By Quantity. " << std::endl;
+	std::cout << " List By Quantity:  " << std::endl;
+	ListByCost << " List By Quantity:  " << std::endl;
+	Book* ReportBook = currentInventory.getBooksDatabase();
+	int bookcount = currentInventory.getBookCount();
+	Book* Tempbook = new Book[bookcount];
+	for (int counter1 = 0; counter1 < bookcount; counter1++) {
+		Tempbook[counter1] = ReportBook[counter1];
+	} // get book count on array
+
+	for (int i = 0; i < bookcount; i++) {
+		for (int j = i + 1; j < bookcount; j++) {
+			if ((ReportBook + j)->getWholesaleCost() < (ReportBook + i)->getWholesaleCost()) {
+
+				Tempbook[0] = ReportBook[i];
+
+				ReportBook[i] = ReportBook[j];
+				ReportBook[j] = Tempbook[0];
+
+			}
+		}
+	} // generate the array
+
+
+
+	for (int counter2 = bookcount; counter2 >= 0; counter2--) {
+		std::cout << (ReportBook + counter2)->getTitle() << "  |  ISBN : " << (ReportBook + counter2)->getIsbn() << "  Quantity on Hand : " << (ReportBook + counter2)->getWholesaleCost() << std::endl;
+		ListByCost << (ReportBook + counter2)->getTitle() << "  |  ISBN : " << (ReportBook + counter2)->getIsbn() << "  Quantity on Hand : " << (ReportBook + counter2)->getWholesaleCost() << std::endl;
+	} //Print out the report
+	delete[] Tempbook;
+	ListByCost.close();
+}
+
+//Report List By Age
+void ReportModule::ReportListByAge(InventoryDatabase& currentInventory) {
+
+	ofstream ListByAge;
+	ListByAge.open("ListByAge.txt"); // create list by age report
+	std::cout << "Welcome to List By Age. " << std::endl;
+	ListByAge << "Welcome to List By Age. " << std::endl;
+	std::cout << " List By Age:  " << std::endl;
+	ListByAge << " List By Age:  " << std::endl;
+	Book* ReportBook = currentInventory.getBooksDatabase();
+	int bookcount = currentInventory.getBookCount();
+	Book* Tempbook = new Book[bookcount];
+	for (int counter1 = 0; counter1 < bookcount; counter1++) {
+		Tempbook[counter1] = ReportBook[counter1];
+	}
+
+	for (int i = 0; i < bookcount; i++) {
+		for (int j = i + 1; j < bookcount; j++) {
+			if ((ReportBook + j)->getYear() == (ReportBook + i)->getYear()) {
+				if ((ReportBook + j)->getMonth() == (ReportBook + i)->getMonth()) {
+
+					if ((ReportBook + j)->getDay() < (ReportBook + i)->getDay()) {
+						Tempbook[0] = ReportBook[i];
+						ReportBook[i] = ReportBook[j];
+						ReportBook[j] = Tempbook[0];
+					}
+				}
+
+				if ((ReportBook + j)->getMonth() < (ReportBook + i)->getMonth()) {
+
+
+
+
+
+					Tempbook[0] = ReportBook[i];
+					ReportBook[i] = ReportBook[j];
+					ReportBook[j] = Tempbook[0];
+				}
+
+				Tempbook[0] = ReportBook[i];
+				ReportBook[i] = ReportBook[j];
+				ReportBook[j] = Tempbook[0];
+			}
+
+
+			if ((ReportBook + j)->getYear() < (ReportBook + i)->getYear()) { //validate years
+
+				Tempbook[0] = ReportBook[i];
+				ReportBook[i] = ReportBook[j];
+				ReportBook[j] = Tempbook[0];
+			}
+		}
+	} // get the oldest
+
+	for (int counter2 = 1; counter2 < bookcount; counter2++) { // Print the report
+		std::cout << "Title:  " << (ReportBook + counter2)->getTitle() << "  |  ISBN : " << (ReportBook + counter2)->getIsbn() << "  Quantity on Hand : " << (ReportBook + counter2)->getDateAdded() << std::endl;
+		ListByAge << "Title:  " << (ReportBook + counter2)->getTitle() << "  |  ISBN : " << (ReportBook + counter2)->getIsbn() << "  Quantity on Hand : " << (ReportBook + counter2)->getDateAdded() << std::endl;
+	}
+	ListByAge.close();
+}
+
 //Main menu report
 void ReportModule::ReportMainMenu(InventoryDatabase& currentInventory) {
-
 
 	int menu = 0;
 	do {
@@ -130,8 +230,7 @@ void ReportModule::ReportMainMenu(InventoryDatabase& currentInventory) {
 		std::cout << "4 for List By Quantity." << std::endl;
 		std::cout << "5 for List By cost." << std::endl;
 		std::cout << "6 for list By Age." << std::endl;
-		std::cout << "7 for list By Age." << std::endl;
-		std::cout << "8 Exit" << std::endl;
+		std::cout << "7 Exit" << std::endl;
 		Helpers::correctingValidInput(menu);
 		switch (menu)
 		{
@@ -147,10 +246,16 @@ void ReportModule::ReportMainMenu(InventoryDatabase& currentInventory) {
 		case 4: 
 			ReportListByQuantity(currentInventory); 
 			break;
+		case 5: 
+			ReportListByCost(currentInventory); 
+			break; 
+		case 6: 
+			ReportListByAge(currentInventory); 
+			break; 
 		default:
 			break;
 		}
-	} while (menu != 8); 
+	} while (menu != 7); 
 
 }
 
