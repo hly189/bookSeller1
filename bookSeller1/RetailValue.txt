@@ -1,0 +1,39 @@
+Welcome to Retail Value report. 
+ Retail Value report: 
+ISBN 978-1-891830-71-6  Title : AEIOU or Any Easy IntimacyRetail Value : $21.18
+ISBN 978-1-60309-2395M  Title : merican Elf 1999Retail Value : $14.94
+ISBN 978-1-891830-37-2  Title : The Barefoot Serpent (softcover)Retail Value : $23.06
+ISBN 978-1-891830-40-2  Title : Beach SafariRetail Value : $22.91
+ISBN 978-1-891830-56-3  Title : BigheadRetail Value : $22.41
+ISBN 978-1-891830-19-8  Title : Box Office PoisonRetail Value : $21.21
+ISBN 978-0-9713597-6-5  Title : ClumsyRetail Value : $18.92
+ISBN 978-1-891830-81-5  Title : Cry Yourself to SleepRetail Value : $14.54
+ISBN 978-1-891830-12-9  Title : Dear JuliaRetail Value : $16.2
+ISBN 978-1-891830-92-1  Title : Death ChocolateRetail Value : $20.3
+ISBN 978-1-891830-77-8  Title : Every Girl is the End of the World for MeRetail Value : $16.17
+ISBN 978-0-9585783-4-9  Title : From HellRetail Value : $21.25
+ISBN 978-1-891830-02-0  Title : Hey Mister Vol 1Retail Value : $17.56
+ISBN 978-1-891830-25-9  Title : Hey Mister Vol 2Retail Value : $17.44
+ISBN 978-1-891830-17-4  Title : Hutch Owen (Vol 1): The CollectedRetail Value : $23.3
+ISBN 978-1-891830-55-6  Title : Hutch Owen (Vol 2): UnmarketableRetail Value : $14.03
+ISBN 978-1-891830-65-5  Title : The King Retail Value : $20.56
+ISBN 978-1-891830-51-8  Title : Less Than HeroesRetail Value : $19.04
+ISBN 978-1-891830-69-3  Title : Lone RacerRetail Value : $23.62
+ISBN 978-1-891830-33-4  Title : Magic Boy and the Robot ElfRetail Value : $22.07
+ISBN 978-1-891830-45-7  Title : The Mirror of LoveRetail Value : $23.27
+ISBN 978-1-891830-36-5  Title : Monkey vs. Robot (Vol 2): Crystal of PowerRetail Value : $22.02
+ISBN 978-1-891830-68-6  Title : MosquitoRetail Value : $13.51
+ISBN 978-1-891830-29-7  Title : Pinky & StinkyRetail Value : $17.54
+ISBN 978-1-891830-14-3  Title : SpeechlessRetail Value : $22.12
+ISBN 978-1-891830-50-1  Title : Spiral-BoundRetail Value : $18.9
+ISBN 978-1-891830-31-0  Title : Three FingersRetail Value : $14.15
+ISBN 978-1-891830-70-9  Title : The TickingRetail Value : $22
+ISBN 978-1-891830-04-4  Title : Top Shelf #7: On Parade EditedRetail Value : $24.6
+ISBN 978-1-891830-11-2  Title : Top Shelf #8: Under the Big TopRetail Value : $23.23
+ISBN 978-1-891830-32-7  Title : Top Shelf #9: Asks the Big Questions EditedRetail Value : $21.36
+ISBN 978-1-891830-73-0  Title : TrickedRetail Value : $17.06
+ISBN 978-1-891830-41-9  Title : UnlikelyRetail Value : $23.63
+ISBN 978-1-891830-38-9  Title : Van Helsing's Night OffRetail Value : $15.87
+ISBN 978-1-60309-035-3  Title : Voice of the FireRetail Value : $20.11
+ISBN 978-1-891830-72-3  Title : Will You Still Love Me If I Wet the BedRetail Value : $17.76
+ Total Retail Value of store : $ 320716 Dollars

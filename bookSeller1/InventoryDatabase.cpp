@@ -152,6 +152,7 @@ void InventoryDatabase::editBook(){
 	cout << "------------------------------------------------------------" << endl;
 	cout << "Editing a book                                              " << endl;
 	cout << "------------------------------------------------------------" << endl;
+
 	cout << "Enter an ISBN to edit: ";
 	cin >> isbn;
 	Book* bookToEdit = findBook(isbn);
@@ -166,40 +167,56 @@ void InventoryDatabase::editBook(){
 			cout << "5. Wholesale cost" << endl;
 			cout << "6. Retail price" << endl;
 			cout << "7. Exit" << endl;
-			cin >> selection;
+			Helpers::correctingValidInput(selection); 
+			cin.ignore();
 			string newValue;
 			switch (selection) {
 			case 1:
 				cout << "Current title: " << bookToEdit->getTitle() << endl;
 				cout << "New title (leave empty for unchanged): ";
 				newValue = Helpers::getConsoleLine();
+				cin.ignore(); 
 				if (newValue != "") bookToEdit->setTitle(newValue);
+				break; 
 			case 2:
 				cout << "Current author: " << bookToEdit->getAuthor() << endl;
 				cout << "New author (leave empty for unchanged): ";
 				newValue = Helpers::getConsoleLine();
+				cin.ignore();
 				if (newValue != "") bookToEdit->setAuthor(newValue);
+				break;
 			case 3:
 				cout << "Current publisher: " << bookToEdit->getPublisher() << endl;
 				cout << "New publisher (leave empty for unchanged): ";
 				newValue = Helpers::getConsoleLine();
+				cin.ignore();
 				if (newValue != "") bookToEdit->setPublisher(newValue);
+				break;
 			case 4:
 				cout << "Current quantity on hand: " << bookToEdit->getQuantityOnHand() << endl;
 				cout << "New quantity on hand (leave empty for unchanged): ";
 				newValue = Helpers::getConsoleLine();
+				cin.ignore();
 				if (newValue != "") bookToEdit->setQuantityOnHand(stoi(newValue));
+				break;
 			case 5:
 				cout << "Current wholesale cost: $" << bookToEdit->getWholesaleCost() << endl;
 				cout << "New wholesale cost (leave empty for unchanged): $";
 				newValue = Helpers::getConsoleLine();
+				cin.ignore();
 				if (newValue != "") bookToEdit->setWholesaleCost(stof(newValue));
+				break;
 			case 6:
 				cout << "Current retail price: " << bookToEdit->getRetailPrice() << endl;
 				cout << "New retail price (leave empty for unchanged): ";
 				newValue = Helpers::getConsoleLine();
+				cin.ignore();
 				if (newValue != "") bookToEdit->setRetailPrice(stof(newValue));
+				break;
+			default: 
+				break; 
 			}
+			std::cout << bookToEdit->bookDataAsHumanReadableString() << std::endl; 
 		}
 	}
 	else {
@@ -240,7 +257,7 @@ void InventoryDatabase::mainMenu() {
 			break;
 		}
 		case 4: {
-			cout << "Editing...";
+			editBook();
 			break;
 		}
 		default:

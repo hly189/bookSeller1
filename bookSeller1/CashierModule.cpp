@@ -166,12 +166,6 @@ void CashierModule::cashierFunction() {
 	// Get the current inventory
 	Book * currentBookArray = currentInventory.getBooksDatabase(); 
 
-
-	for (int i = 0; i < currentInventory.getBookCount(); i++) {
-		std::cout << "This is " << currentBookArray[i].bookDataAsString() << std::endl; 
-	}
-
-
 	// Asking Customer
 	std::string answer; 
 	double saleTax; 

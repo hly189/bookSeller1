@@ -5,6 +5,7 @@
 #include "InventoryDatabase.h"
 #include "CashierModule.h"
 #include "Helpers.h"
+#include "ReportModule.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ int main() {
 void mainMenu() {
 	InventoryDatabase db = InventoryDatabase("inv.txt");
 	CashierModule cashier = CashierModule(db); 
+	ReportModule report = ReportModule(db); 
 	int selection;
 	std::string answer; 
 	do {
@@ -35,6 +37,9 @@ void mainMenu() {
 		case 2:
 			db.mainMenu();
 			break;
+		case 3: 
+			report.ReportMainMenu(db); 
+			break; 
 		}
 		std::cout << "Do you want to continue? "; 
 		std::getline(std::cin, answer); 
