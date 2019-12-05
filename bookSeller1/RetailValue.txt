@@ -1,39 +1,39 @@
-Welcome to Retail Value report. 
- Retail Value report: 
-ISBN 978-1-891830-71-6  Title : AEIOU or Any Easy IntimacyRetail Value : $21.18
-ISBN 978-1-60309-2395M  Title : merican Elf 1999Retail Value : $14.94
-ISBN 978-1-891830-37-2  Title : The Barefoot Serpent (softcover)Retail Value : $23.06
-ISBN 978-1-891830-40-2  Title : Beach SafariRetail Value : $22.91
-ISBN 978-1-891830-56-3  Title : BigheadRetail Value : $22.41
-ISBN 978-1-891830-19-8  Title : Box Office PoisonRetail Value : $21.21
-ISBN 978-0-9713597-6-5  Title : ClumsyRetail Value : $18.92
-ISBN 978-1-891830-81-5  Title : Cry Yourself to SleepRetail Value : $14.54
-ISBN 978-1-891830-12-9  Title : Dear JuliaRetail Value : $16.2
-ISBN 978-1-891830-92-1  Title : Death ChocolateRetail Value : $20.3
-ISBN 978-1-891830-77-8  Title : Every Girl is the End of the World for MeRetail Value : $16.17
-ISBN 978-0-9585783-4-9  Title : From HellRetail Value : $21.25
-ISBN 978-1-891830-02-0  Title : Hey Mister Vol 1Retail Value : $17.56
-ISBN 978-1-891830-25-9  Title : Hey Mister Vol 2Retail Value : $17.44
-ISBN 978-1-891830-17-4  Title : Hutch Owen (Vol 1): The CollectedRetail Value : $23.3
-ISBN 978-1-891830-55-6  Title : Hutch Owen (Vol 2): UnmarketableRetail Value : $14.03
-ISBN 978-1-891830-65-5  Title : The King Retail Value : $20.56
-ISBN 978-1-891830-51-8  Title : Less Than HeroesRetail Value : $19.04
-ISBN 978-1-891830-69-3  Title : Lone RacerRetail Value : $23.62
-ISBN 978-1-891830-33-4  Title : Magic Boy and the Robot ElfRetail Value : $22.07
-ISBN 978-1-891830-45-7  Title : The Mirror of LoveRetail Value : $23.27
-ISBN 978-1-891830-36-5  Title : Monkey vs. Robot (Vol 2): Crystal of PowerRetail Value : $22.02
-ISBN 978-1-891830-68-6  Title : MosquitoRetail Value : $13.51
-ISBN 978-1-891830-29-7  Title : Pinky & StinkyRetail Value : $17.54
-ISBN 978-1-891830-14-3  Title : SpeechlessRetail Value : $22.12
-ISBN 978-1-891830-50-1  Title : Spiral-BoundRetail Value : $18.9
-ISBN 978-1-891830-31-0  Title : Three FingersRetail Value : $14.15
-ISBN 978-1-891830-70-9  Title : The TickingRetail Value : $22
-ISBN 978-1-891830-04-4  Title : Top Shelf #7: On Parade EditedRetail Value : $24.6
-ISBN 978-1-891830-11-2  Title : Top Shelf #8: Under the Big TopRetail Value : $23.23
-ISBN 978-1-891830-32-7  Title : Top Shelf #9: Asks the Big Questions EditedRetail Value : $21.36
-ISBN 978-1-891830-73-0  Title : TrickedRetail Value : $17.06
-ISBN 978-1-891830-41-9  Title : UnlikelyRetail Value : $23.63
-ISBN 978-1-891830-38-9  Title : Van Helsing's Night OffRetail Value : $15.87
-ISBN 978-1-60309-035-3  Title : Voice of the FireRetail Value : $20.11
-ISBN 978-1-891830-72-3  Title : Will You Still Love Me If I Wet the BedRetail Value : $17.76
- Total Retail Value of store : $ 320716 Dollars
+Welcome to List By Quantity. 
+ List By Quantity:  
+  |  ISBN :   Quantity on Hand : 0
+Mosquito  |  ISBN : 978-1-891830-68-6  Quantity on Hand : 957
+Hutch Owen (Vol 2): Unmarketable  |  ISBN : 978-1-891830-55-6  Quantity on Hand : 890
+Hey Mister Vol 2  |  ISBN : 978-1-891830-25-9  Quantity on Hand : 881
+Clumsy  |  ISBN : 978-0-9713597-6-5  Quantity on Hand : 878
+Death Chocolate  |  ISBN : 978-1-891830-92-1  Quantity on Hand : 877
+Will You Still Love Me If I Wet the Bed  |  ISBN : 978-1-891830-72-3  Quantity on Hand : 832
+Speechless  |  ISBN : 978-1-891830-14-3  Quantity on Hand : 774
+Pinky & Stinky  |  ISBN : 978-1-891830-29-7  Quantity on Hand : 725
+Voice of the Fire  |  ISBN : 978-1-60309-035-3  Quantity on Hand : 705
+Hutch Owen (Vol 1): The Collected  |  ISBN : 978-1-891830-17-4  Quantity on Hand : 645
+Spiral-Bound  |  ISBN : 978-1-891830-50-1  Quantity on Hand : 594
+Three Fingers  |  ISBN : 978-1-891830-31-0  Quantity on Hand : 584
+Box Office Poison  |  ISBN : 978-1-891830-19-8  Quantity on Hand : 576
+Every Girl is the End of the World for Me  |  ISBN : 978-1-891830-77-8  Quantity on Hand : 524
+Hey Mister Vol 1  |  ISBN : 978-1-891830-02-0  Quantity on Hand : 520
+Dear Julia  |  ISBN : 978-1-891830-12-9  Quantity on Hand : 517
+Top Shelf #9: Asks the Big Questions Edited  |  ISBN : 978-1-891830-32-7  Quantity on Hand : 503
+merican Elf 1999  |  ISBN : 978-1-60309-2395M  Quantity on Hand : 465
+AEIOU or Any Easy Intimacy  |  ISBN : 978-1-891830-71-6  Quantity on Hand : 431
+The Mirror of Love  |  ISBN : 978-1-891830-45-7  Quantity on Hand : 406
+Beach Safari  |  ISBN : 978-1-891830-40-2  Quantity on Hand : 358
+Lone Racer  |  ISBN : 978-1-891830-69-3  Quantity on Hand : 349
+The Barefoot Serpent (softcover)  |  ISBN : 978-1-891830-37-2  Quantity on Hand : 338
+Bighead  |  ISBN : 978-1-891830-56-3  Quantity on Hand : 274
+Top Shelf #7: On Parade Edited  |  ISBN : 978-1-891830-04-4  Quantity on Hand : 264
+From Hell  |  ISBN : 978-0-9585783-4-9  Quantity on Hand : 262
+Top Shelf #8: Under the Big Top  |  ISBN : 978-1-891830-11-2  Quantity on Hand : 245
+The Ticking  |  ISBN : 978-1-891830-70-9  Quantity on Hand : 221
+The King   |  ISBN : 978-1-891830-65-5  Quantity on Hand : 219
+Less Than Heroes  |  ISBN : 978-1-891830-51-8  Quantity on Hand : 218
+Unlikely  |  ISBN : 978-1-891830-41-9  Quantity on Hand : 216
+Van Helsing's Night Off  |  ISBN : 978-1-891830-38-9  Quantity on Hand : 178
+Magic Boy and the Robot Elf  |  ISBN : 978-1-891830-33-4  Quantity on Hand : 156
+Tricked  |  ISBN : 978-1-891830-73-0  Quantity on Hand : 102
+Monkey vs. Robot (Vol 2): Crystal of Power  |  ISBN : 978-1-891830-36-5  Quantity on Hand : 94
+Cry Yourself to Sleep  |  ISBN : 978-1-891830-81-5  Quantity on Hand : 63

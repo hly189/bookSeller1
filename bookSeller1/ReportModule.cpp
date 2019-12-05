@@ -78,6 +78,45 @@ void ReportModule::ReportRetailValue(InventoryDatabase& currentInventory) {
 
 }
 
+//Report List By Quantity
+void ReportModule::ReportListByQuantity(InventoryDatabase& currentInventory) {
+
+	ofstream ListByQuantity;
+	ListByQuantity.open("RetailValue.txt"); //Create Retail Txt
+	std::cout << "Welcome to List By Quantity. " << std::endl;
+	ListByQuantity << "Welcome to List By Quantity. " << std::endl;
+	std::cout << " List By Quantity:  " << std::endl;
+	ListByQuantity << " List By Quantity:  " << std::endl;
+	Book* ReportBook = currentInventory.getBooksDatabase(); // get book array
+	int bookcount = currentInventory.getBookCount();
+	Book* Tempbook = new Book[bookcount]; // generate new book array
+	for (int counter1 = 0; counter1 < bookcount; counter1++) {
+		Tempbook[counter1] = ReportBook[counter1];
+	}
+	// set ordened
+	for (int i = 0; i < bookcount; i++) {
+		for (int j = i + 1; j < bookcount; j++) {
+			if ((ReportBook + j)->getQuantityOnHand() < (ReportBook + i)->getQuantityOnHand()) {
+
+				Tempbook[0] = ReportBook[i];
+
+				ReportBook[i] = ReportBook[j];
+				ReportBook[j] = Tempbook[0];
+
+			}
+		}
+	}
+
+
+	//print out the report
+	for (int counter2 = bookcount; counter2 >= 0; counter2--) {
+		std::cout << (ReportBook + counter2)->getTitle() << "  |  ISBN : " << (ReportBook + counter2)->getIsbn() << "  Quantity on Hand : " << (ReportBook + counter2)->getQuantityOnHand() << std::endl;
+		ListByQuantity << (ReportBook + counter2)->getTitle() << "  |  ISBN : " << (ReportBook + counter2)->getIsbn() << "  Quantity on Hand : " << (ReportBook + counter2)->getQuantityOnHand() << std::endl;
+	}
+	delete[] Tempbook;
+	ListByQuantity.close();
+}
+
 //Main menu report
 void ReportModule::ReportMainMenu(InventoryDatabase& currentInventory) {
 
@@ -104,6 +143,10 @@ void ReportModule::ReportMainMenu(InventoryDatabase& currentInventory) {
 			break; 
 		case 3: 
 			ReportRetailValue(currentInventory);
+			break; 
+		case 4: 
+			ReportListByQuantity(currentInventory); 
+			break;
 		default:
 			break;
 		}
